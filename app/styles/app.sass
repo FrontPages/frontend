@@ -1,9 +1,13 @@
 @import '_color-definitions'
-$color-primary: $palette-blue-500
+$color-primary: $palette-grey-700
 $color-accent: $palette-orange-500
 @import 'material-design-lite'
 
 @import 'headlines'
+
+.application-title
+  color: unquote("rgb(#{$color-primary})")
+  justify-content: center
 
 body
   background: unquote("rgb(#{$palette-grey-300})")
