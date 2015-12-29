@@ -10,7 +10,9 @@ module.exports = function(app) {
   for (var id = 1; id <= 20; id++) {
     title = loremIpsum({ units: 'words', count: 10 });
     headlines.push({
+      created_at: Date.now(),
       id: id,
+      site: id,
       snapshot: `http://lorempixel.com/g/209/250/business/${id % 10}`,
       title: title,
       url: 'http://nytimes.com'
