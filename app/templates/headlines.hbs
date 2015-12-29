@@ -1,9 +1,11 @@
-<section class="mdl-grid">
+<section class="headlines mdl-grid">
   {{#each model as |headline| }}
     <article class="mdl-cell mdl-cell--3-col">
-      <div class="mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">{{headline.title}}</h2>
+      <div class="headlines-card mdl-card mdl-shadow--2dp">
+        <div class="headlines-card-title mdl-card__title" style="background-image:url({{headline.snapshot}})">
+        </div>
+        <div class="mdl-card__supporting-text">
+          {{headline.title}}
         </div>
       </div>
     </article>
