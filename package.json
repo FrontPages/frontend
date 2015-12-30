@@ -45,6 +45,7 @@
     "morgan": "^1.6.1"
   },
   "dependencies": {
+    "lorem-ipsum": "^1.0.3",
     "material-design-lite": "^1.0.6"
   }
 }
