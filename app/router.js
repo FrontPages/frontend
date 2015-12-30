@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('headlines', { path: '/' });
+  this.route('snapshots', { path: '/' });
 });
 
 export default Router;

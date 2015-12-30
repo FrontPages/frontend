@@ -1,0 +1,17 @@
+<section class="snapshots mdl-grid">
+  {{#each model as |snapshot| }}
+    <article class="mdl-cell mdl-cell--3-col">
+      <div class="snapshots-card mdl-card mdl-shadow--2dp">
+        <figure class="snapshots-card-screenshot">
+          <img src="{{snapshot.file_path}}" alt="Screenshot">
+        </figure>
+        <div class="snapshots-card-title mdl-card__title">
+          <h2 class="mdl-card__title-text">{{snapshot.site.name}}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <time class="snapshots-card-date">{{moment-from-now snapshot.created_at}}</time>
+        </div>
+      </div>
+    </article>
+  {{/each}}
+</section>

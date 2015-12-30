@@ -36,5 +36,5 @@ module.exports = function(app) {
     });
   });
 
-  app.use('/api/v1/sites', router);
+  app.use('/sites', router);
 };
