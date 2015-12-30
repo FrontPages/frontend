@@ -1,4 +1,4 @@
-var loremIpsum = require('lorem-ipsum');
+var sites = require('./sites.json');
 
 var fetchSiteById = function(id) {
   return function(site) {
@@ -6,22 +6,11 @@ var fetchSiteById = function(id) {
   }
 }
 
-
 /*jshint node:true*/
 module.exports = function(app) {
   var express = require('express'),
-      sites = [],
       router = express.Router(),
       title;
-
-  for (var id = 1; id <= 20; id++) {
-    name = loremIpsum({ units: 'words', count: 2 });
-    sites.push({
-      id: id,
-      name: name,
-      url: 'http://nytimes.com'
-    });
-  }
 
   router.get('/', function(req, res) {
     res.send({
