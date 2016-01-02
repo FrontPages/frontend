@@ -2,11 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    this._preloadSites();
-    return this.store.findAll('snapshot');
+    return this._preloadSites().then(() => {
+      return this.store.findAll('snapshot');
+    });
   },
 
   _preloadSites() {
-    this.store.findAll('site');
+    return this.store.findAll('site');
   }
 });
