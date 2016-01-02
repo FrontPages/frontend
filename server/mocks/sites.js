@@ -13,9 +13,7 @@ module.exports = function(app) {
       title;
 
   router.get('/', function(req, res) {
-    res.send({
-      'sites': sites
-    });
+    res.send(sites);
   });
 
   router.get('/:id', function(req, res) {

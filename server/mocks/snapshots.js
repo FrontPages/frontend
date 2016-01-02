@@ -7,9 +7,7 @@ module.exports = function(app) {
       title;
 
   router.get('/', function(req, res) {
-    res.send({
-      'snapshots': snapshots
-    });
+    res.send(snapshots);
   });
 
   app.use('/snapshots', router);
