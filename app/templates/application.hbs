@@ -1,10 +1,13 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="application-layout
+            mdl-layout
+            mdl-js-layout
+            mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row application-title">
       <span class="mdl-layout-title">Front Pages Archive</span>
     </div>
   </header>
   <main class="mdl-layout__content">
-    {{outlet}}
+    <div class="page-content">{{outlet}}</div>
   </main>
 </div>
