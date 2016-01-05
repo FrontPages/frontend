@@ -1,21 +1,23 @@
 <div class="snapshots">
-  {{#each sortedSites as |site| }}
-    <h2 class="mdl-typography--caption snapshots-site-name">{{site.name}}</h2>
-    <ul class="snapshots-list">
-      {{#each site.snapshots as |snapshot| }}
-        <li>
-          <article class="snapshots-snapshot">
-            <figure class="snapshots-card-screenshot">
-              <img src="{{snapshot.file_path}}" alt="Screenshot">
-              <figcaption>
-                <time class="snapshots-card-date">
-                  {{moment-from-now snapshot.created_at}}
-                </time>
-              </figcaption>
-            </figure>
-          </article>
-        </li>
-      {{/each}}
-    </ul>
+  {{#each sortedSites as |site|}}
+    {{#if site.snapshots}}
+      <h2 class="mdl-typography--caption snapshots-site-name">{{site.name}}</h2>
+      <ul class="snapshots-list">
+        {{#each site.snapshots as |snapshot| }}
+          <li>
+            <article class="snapshots-snapshot">
+              <figure class="snapshots-card-screenshot">
+                <img src="{{snapshot.file_path}}" alt="Screenshot">
+                <figcaption>
+                  <time class="snapshots-card-date">
+                    {{moment-from-now snapshot.created_at}}
+                  </time>
+                </figcaption>
+              </figure>
+            </article>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   {{/each}}
 </div>
