@@ -13,8 +13,30 @@
   max-height: 300px
   overflow: hidden
 
+  figcaption
+    @extend .mdl-card__supporting-text
+    padding:
+      left: 0
+      right: 0
+
   img
     width: 100%
 
 .snapshots-card-date
+  text-transform: uppercase
+
+.snapshots-list
+  list-style-type: none
+  overflow-x: auto
+  padding: 0
+  white-space: nowrap
+
+  li
+    display: inline-block
+    width: 200px
+
+.snapshots-snapshot
+  width: calc(100% - 16px)
+
+.snapshots-site-name
   text-transform: uppercase
