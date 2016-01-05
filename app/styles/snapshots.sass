@@ -10,8 +10,9 @@
     repeat: no-repeat
     size: cover
   margin: 0
-  max-height: 300px
   overflow: hidden
+  padding-top: 300px
+  position: relative
 
   figcaption
     @extend .mdl-card__supporting-text
@@ -21,6 +22,9 @@
 
   img
     background: #fff
+    clip: rect(0px, auto, 300px, 0px)
+    position: absolute
+    top: 0
     width: 100%
 
 .snapshots-card-date
