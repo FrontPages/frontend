@@ -3,7 +3,7 @@
     {{#if site.snapshots}}
       <h2 class="mdl-typography--caption snapshots-site-name">{{site.name}}</h2>
       <ul class="snapshots-list">
-        {{#each site.snapshots as |snapshot| }}
+        {{#each (array-filter-by sortedSnapshots "site.id" site.id) as |snapshot|}}
           <li>
             <article class="snapshots-snapshot">
               <figure class="snapshots-card-screenshot">
