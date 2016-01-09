@@ -1,6 +1,6 @@
-.application-credits
+.sites-credits
   font:
-    family: $serif-font-family
+    weight: 100
   line-height: 1.25em
   margin: 0
   opacity: .5
@@ -8,8 +8,10 @@
 
   a
     color: inherit
+    font-weight: bold
+    text-decoration: none
 
-.application-github-link
+.sites-github-link
   margin-left: 1em
   opacity: .5
   transition: opacity .35s
@@ -21,14 +23,18 @@
   img
     width: 100%
 
-.application-header
-  background: #fff
-  color: unquote("rgb(#{$color-primary})")
+.sites-header
+  background-color: unquote("rgb(#{$color-primary})")
+  color: #fff
 
-.application-layout
+.sites-layout
   position: absolute
 
-.application-title
+.sites-tabs
+  a.active
+    @extend .is-active
+
+.sites-title
   font:
     family: $serif-font-family
     size: 2em

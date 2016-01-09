@@ -6,7 +6,7 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     sassOptions: {
       extension: 'sass',
-      includePaths: ['node_modules/material-design-lite/src']
+      includePaths: ['bower_components/material-design-lite/src']
     }
   });
 
@@ -22,6 +22,11 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
+  app.import('bower_components/material-design-lite/material.js');
+  app.import('bower_components/jquery-ui/jquery-ui.js');
+  app.import('bower_components/coverflow/jquery.coverflow.js');
+  app.import('bower_components/coverflow/jquery.interpolate.js');
+  app.import('bower_components/coverflow/jquery.touchSwipe.min.js');
 
   return app.toTree();
 };

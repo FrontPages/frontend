@@ -1,0 +1,37 @@
+<div class="sites-layout
+            mdl-layout
+            mdl-js-layout
+            mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+
+  <header class="mdl-layout__header sites-header">
+
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title sites-title">Front Pages</span>
+
+      <div class="mdl-layout-spacer"></div>
+
+      <p class="sites-credits">
+        Created by <a href="http://jaypinho.com" target="_blank">Jay Pinho</a> &amp; <a href="http://jessepinho.com" target="_blank">Jesse Pinho</a>
+        <br> in Brooklyn &amp; Chicago
+      </p>
+
+      <a href="https://github.com/FrontPages" target="_blank" class="sites-github-link">
+        <img src="/assets/images/github.svg" alt="GitHub logo">
+      </a>
+    </div>
+
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect sites-tabs">
+      {{#each model as |site|}}
+        {{#link-to "sites.site" site.dasherizedName class="mdl-layout__tab"}}
+          {{site.name}}
+        {{/link-to}}
+      {{/each}}
+    </div>
+
+  </header>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">{{outlet}}</div>
+  </main>
+</div>

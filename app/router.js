@@ -6,7 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('snapshots', { path: '/' });
+  this.route('sites', { path: '/' }, function() {
+    this.route('site', { path: '/site/:name' });
+  });
 });
 
 export default Router;

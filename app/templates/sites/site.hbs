@@ -1,0 +1,21 @@
+<div class="site">
+  {{#if filteredSnapshots}}
+    {{#jquery-coverflow classNames="site-coverflow"
+                        observeForRefresh=model.id}}
+      {{#each filteredSnapshots as |snapshot|}}
+        {{#jquery-coverflow-cover}}
+          <figure class="site-screenshot">
+            <div class="site-screenshot-image">
+              <img src="{{snapshot.file_path}}" alt="Screenshot" class="mdl-shadow--8dp">
+            </div>
+            <figcaption>
+              <time class="site-coverflow-cover-date">
+                {{moment-from-now snapshot.created_at}}
+              </time>
+            </figcaption>
+          </figure>
+        {{/jquery-coverflow-cover}}
+      {{/each}}
+    {{/jquery-coverflow}}
+  {{/if}}
+</div>

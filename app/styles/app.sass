@@ -1,13 +1,14 @@
 @import '_color-definitions'
-$color-primary: $palette-grey-700
+$color-primary: $palette-blue-grey-500
 $color-accent: $palette-orange-500
-$serif-font-family: 'Vollkorn', serif
 @import 'material-design-lite'
 
 @import url(https://fonts.googleapis.com/css?family=Vollkorn)
 
-@import 'application'
-@import 'snapshots'
+$body-background-color: $palette-grey-200
+$serif-font-family: 'Vollkorn', serif
+@import 'sites'
+@import 'site'
 
 body
-  background: unquote("rgb(#{$palette-grey-200})")
+  background: unquote("rgb(#{$body-background-color})")
