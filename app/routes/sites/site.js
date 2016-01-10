@@ -5,5 +5,11 @@ export default Ember.Route.extend({
     return this.store.findAll('site').then((sites) => {
       return sites.findBy('dasherizedName', params.name);
     });
+  },
+
+  actions: {
+    didTransition() {
+      return false;
+    }
   }
 });

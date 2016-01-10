@@ -7,7 +7,13 @@
   <header class="mdl-layout__header sites-header">
 
     <div class="mdl-layout__header-row sites-header-row">
-      <span class="mdl-layout-title sites-title">Front Pages</span>
+      {{#link-to "sites" classNames="sites-logo"}}
+        <img src="/assets/images/logo.svg" alt="FrontPages logo">
+      {{/link-to}}
+
+      {{#link-to "application" classNames="sites-title"}}
+        <span class="mdl-layout-title">Front Pages</span>
+      {{/link-to}}
 
       <div class="mdl-layout-spacer"></div>
 

@@ -7,15 +7,17 @@ export default Ember.Route.extend({
     });
   },
 
-  afterModel: function() {
-    this.replaceWith('sites.site', this.modelFor('sites').get('firstObject.dasherizedName'));
-  },
-
   renderTemplate() {
     var controller = this.controllerFor('sites');
     this.render('sites');
     Ember.run.next(() => {
       controller.set('rendered', true);
     });
+  },
+
+  actions: {
+    didTransition() {
+      this.replaceWith('sites.site', this.modelFor('sites').get('firstObject.dasherizedName'));
+    }
   }
 });
