@@ -1,15 +1,19 @@
 .sites-credits
+  color: $layout-header-tab-text-color
   font:
     weight: 100
   line-height: 1.25em
   margin: 0
-  opacity: .5
   text-align: right
 
   a
-    color: inherit
+    color: $layout-header-tab-text-color
     font-weight: bold
     text-decoration: none
+    transition: color .35s
+
+    &:hover
+      color: $layout-header-text-color
 
 .sites-github-link
   margin-left: 1em
