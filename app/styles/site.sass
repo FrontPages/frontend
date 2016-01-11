@@ -1,23 +1,13 @@
 .site
-  margin: 16px auto // TODO: Use variable for gutter
-  position: relative
-  width: 80%
+  height: 100%
+  position: absolute
+  width: 100%
 
-.site-screenshot
-  figcaption
-    @extend .mdl-card__supporting-text
-    padding:
-      left: 0
-      right: 0
+.site-coverflow
+  max-height: 100%
 
-  img
-    background: #fff
-
-.site-screenshot-image
-  background: unquote("rgb(#{$body-background-color})")
-  border: 1px solid unquote("rgb(#{$color-primary})")
-  max-height: 450px
-  overflow: hidden
+  .cover
+    height: 100%
 
 .site-coverflow-cover-date
   text-transform: uppercase
@@ -31,6 +21,28 @@
   li
     display: inline-block
     width: 200px
+
+.site-screenshot
+  box-sizing: border-box
+  display: flex
+  flex-direction: column
+  margin: 0
+  max-height: 100%
+  padding: 16px 0 // TODO: Use variable for gutter
+
+  figcaption
+    @extend .mdl-card__supporting-text
+    padding:
+      left: 0
+      right: 0
+
+  img
+    background: #fff
+
+.site-screenshot-image
+  background: unquote("rgb(#{$body-background-color})")
+  border: 1px solid unquote("rgb(#{$color-primary})")
+  overflow: hidden
 
 .site-snapshot
   width: calc(100% - 16px) // TODO: Use variable for gutter
