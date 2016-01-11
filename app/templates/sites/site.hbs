@@ -5,8 +5,11 @@
       {{#each filteredSnapshots as |snapshot|}}
         {{#jquery-coverflow-cover}}
           <figure class="site-screenshot">
+            {{outlet}}
             <div class="site-screenshot-image">
-              <img src="{{snapshot.file_path}}" alt="Screenshot" class="mdl-shadow--8dp">
+              {{#link-to "sites.site.snapshot" snapshot.id }}
+                <img src="{{snapshot.file_path}}" alt="Screenshot" class="mdl-shadow--8dp">
+              {{/link-to}}
             </div>
             <figcaption>
               <time class="site-coverflow-cover-date">
