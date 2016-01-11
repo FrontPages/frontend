@@ -12,10 +12,12 @@
 
   img
     background: #fff
-    border: 1px solid unquote("rgb(#{$color-primary})")
 
-  .site-screenshot-image
-    background: unquote("rgb(#{$body-background-color})")
+.site-screenshot-image
+  background: unquote("rgb(#{$body-background-color})")
+  border: 1px solid unquote("rgb(#{$color-primary})")
+  max-height: 450px
+  overflow: hidden
 
 .site-coverflow-cover-date
   text-transform: uppercase
