@@ -1,12 +1,13 @@
 <div class="site">
   {{#if filteredSnapshots}}
     {{#jquery-coverflow classNames="site-coverflow"
-                        observeForRefresh=model.id}}
+                        observeForRefresh=model.id
+                        animateStep=coverflowAnimator}}
       {{#each filteredSnapshots as |snapshot|}}
         {{#jquery-coverflow-cover}}
           <figure class="site-screenshot">
-            <div data-src="{{snapshot.file_path}}"
-                 class="site-screenshot-image site-screenshot-image-loading mdl-shadow--8dp">
+            <div class="site-screenshot-image site-screenshot-image-loading">
+              <img data-src="{{snapshot.file_path}}" src="{{emptyGIF}}" alt="Screenshot">
             </div>
             <figcaption>
               <time class="site-coverflow-cover-date">

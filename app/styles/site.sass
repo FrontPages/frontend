@@ -9,6 +9,9 @@
   .cover
     height: 100%
 
+    &.current .site-screenshot-image
+      @extend .mdl-shadow--8dp
+
 .site-coverflow-cover-date
   text-transform: uppercase
 
@@ -41,20 +44,27 @@
     width: 100%
 
 .site-screenshot-image
-  background-color: unquote("rgb(#{$body-background-color})")
-  border: 1px solid unquote("rgb(#{$color-primary})")
+  background-color: unquote("rgba(#{$body-background-color}, 1)")
+  border:
+    color: unquote("rgb(#{$color-primary})")
+    style: solid
+    width: 1px
   overflow: hidden
-  transition: flex-grow .35s
+  transition: flex-grow .35s, background-color .35s, box-shadow .15s
   width: 300px
 
   &.site-screenshot-image-loading
     background:
+      color: unquote("rgb(#{$color-primary})")
       image: url(/assets/images/paper.svg)
-      position: top center
+      position: center center
       repeat: no-repeat
-      size: cover
+      size: 100px
     flex-grow: 1
     height: 100%
+
+    img
+      background-color: rgba(255, 255, 255, 0)
 
 .site-snapshot
   width: calc(100% - 16px) // TODO: Use variable for gutter

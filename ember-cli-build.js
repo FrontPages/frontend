@@ -27,6 +27,7 @@ module.exports = function(defaults) {
   app.import('bower_components/coverflow/jquery.coverflow.js');
   app.import('bower_components/coverflow/jquery.interpolate.js');
   app.import('bower_components/coverflow/jquery.touchSwipe.min.js');
+  app.import('bower_components/xcolor/jquery.xcolor.js');
 
   return app.toTree();
 };
