@@ -30,7 +30,8 @@
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect sites-tabs">
       {{#each model as |site|}}
         {{#link-to "sites.site" site.dasherizedName class="mdl-layout__tab"}}
-          {{site.name}}
+          <span class="sites-name">{{site.name}}</span>
+          <span class="sites-shortcode">{{site.shortcode}}</span>
         {{/link-to}}
       {{/each}}
     </div>

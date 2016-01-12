@@ -6,6 +6,7 @@ export default DS.Model.extend({
     return this.get('name').dasherize();
   }),
   name: DS.attr('string'),
+  shortcode: DS.attr('string'),
   snapshots: DS.hasMany('snapshot'),
   url: DS.attr('string')
 });
