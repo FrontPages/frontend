@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import coverflowAnimator from 'front-pages/utils/coverflow-animator';
+import CoverflowAnimator from 'front-pages/utils/coverflow-animator';
 
 var onload = function() {
   var $img = Ember.$(this);
   $img.parents('.site-screenshot-image-loading')
       .removeClass('site-screenshot-image-loading')
-      .css('background-color', '')
+      .css('background-color', '');
   $img.hide()
       .fadeIn();
 };
@@ -13,7 +13,14 @@ var onload = function() {
 export default Ember.Controller.extend({
   // Empty GIF courtesy of http://stackoverflow.com/a/14115340/974981
   emptyGIF: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
-  coverflowAnimator: coverflowAnimator,
+
+  coverflowAnimator: Ember.computed(function() {
+    return CoverflowAnimator.create();
+  }),
+
+  animateStep: Ember.computed('coverflowAnimator', function() {
+    return this.get('coverflowAnimator.animateStep').bind(this.get('coverflowAnimator'));
+  }),
 
   snapshots: Ember.computed(function() {
     return this.store.findAll('snapshot');

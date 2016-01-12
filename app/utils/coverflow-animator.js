@@ -1,40 +1,39 @@
 import Ember from 'ember';
 
-var originalBackgroundColor, originalBorderColor;
+export default Ember.Object.extend({
+  bodyBackgroundColor: Ember.computed(function() {
+    return Ember.$('body').css('background-color');
+  }),
 
-var getOriginalBackgroundColor = function($imageWrapper) {
-  var color = originalBackgroundColor || $imageWrapper.css('background-color');
-  if (!originalBackgroundColor) {
-    originalBackgroundColor = color;
+  coverBackgroundColor: Ember.computed(function() {
+    return this.get('firstImageWrapper').css('background-color');
+  }),
+
+  coverBorderColor: Ember.computed(function() {
+    return this.get('firstImageWrapper').css('border-color');
+  }),
+
+  firstImageWrapper: Ember.computed(function() {
+    return Ember.$('.site-screenshot-image:eq(0)');
+  }),
+
+  calculateBackgroundColor(opacity) {
+    return $.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBackgroundColor'), opacity);
+  },
+
+  calculateBorderColor(opacity) {
+    return $.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBorderColor'), opacity);
+  },
+
+  animateStep(event, cover, offset) {
+    var opacity = 1 - Math.sqrt(Math.abs(offset)),
+        $imageWrapper = Ember.$(cover).find('.site-screenshot-image');
+
+    $(cover).find('img, figcaption').css({ opacity: opacity });
+    $imageWrapper.css('border-color', this.calculateBorderColor(opacity));
+
+    if ($imageWrapper.hasClass('site-screenshot-image-loading')) {
+      $imageWrapper.css('background-color', this.calculateBackgroundColor(opacity));
+    }
   }
-  return color;
-};
-
-var getOriginalBorderColor = function($imageWrapper) {
-  var color = originalBorderColor || $imageWrapper.css('border-color');
-  if (!originalBorderColor) {
-    originalBorderColor = color;
-  }
-  return color;
-};
-
-export default function coverflowAnimator(event, cover, offset) {
-  var opacity = 1 - Math.sqrt(Math.abs(offset)),
-      $imageWrapper = Ember.$(cover).find('.site-screenshot-image'),
-      bodyBackgroundColor = Ember.$('body').css('background-color'),
-      borderColor,
-      newBorderColor,
-      backgroundColor,
-      newBackgroundColor;
-
-  $(cover).find('img, figcaption').css({ opacity: opacity });
-  borderColor = getOriginalBorderColor($imageWrapper);
-  newBorderColor = $.xcolor.opacity(bodyBackgroundColor, borderColor, opacity).getHex();
-  $imageWrapper.css('border-color', newBorderColor);
-
-  if ($imageWrapper.hasClass('site-screenshot-image-loading')) {
-    backgroundColor = getOriginalBackgroundColor($imageWrapper);
-    newBackgroundColor = $.xcolor.opacity(bodyBackgroundColor, backgroundColor, opacity).getHex();
-    $imageWrapper.css('background-color', newBackgroundColor);
-  }
-}
+});
