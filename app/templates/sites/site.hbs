@@ -5,8 +5,8 @@
       {{#each filteredSnapshots as |snapshot|}}
         {{#jquery-coverflow-cover}}
           <figure class="site-screenshot">
-            <div class="site-screenshot-image site-screenshot-image-loading mdl-shadow--8dp">
-              <img src="{{emptyGIF}}" data-src="{{snapshot.file_path}}" alt="Screenshot">
+            <div data-src="{{snapshot.file_path}}"
+                 class="site-screenshot-image site-screenshot-image-loading mdl-shadow--8dp">
             </div>
             <figcaption>
               <time class="site-coverflow-cover-date">

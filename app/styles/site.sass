@@ -38,13 +38,14 @@
 
   img
     background: #fff
-    width: 300px
+    width: 100%
 
 .site-screenshot-image
   background-color: unquote("rgb(#{$body-background-color})")
   border: 1px solid unquote("rgb(#{$color-primary})")
   overflow: hidden
   transition: flex-grow .35s
+  width: 300px
 
   &.site-screenshot-image-loading
     background:
@@ -54,9 +55,6 @@
       size: cover
     flex-grow: 1
     height: 100%
-
-    img
-      background: none
 
 .site-snapshot
   width: calc(100% - 16px) // TODO: Use variable for gutter
