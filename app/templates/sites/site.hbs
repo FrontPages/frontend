@@ -2,7 +2,12 @@
   {{#if filteredSnapshots}}
     {{#jquery-coverflow classNames="site-coverflow"
                         observeForRefresh=model.id
-                        animateStep=animateStep}}
+                        animateStep=animateStep
+                        enableWheel=false
+                        innerAngle=0
+                        outerAngle=0
+                        innerScale=0.95
+                        outerScale=0.1}}
       {{#each filteredSnapshots as |snapshot|}}
         {{#jquery-coverflow-cover}}
           <figure class="site-screenshot">
