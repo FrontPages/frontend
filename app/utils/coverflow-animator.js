@@ -18,18 +18,18 @@ export default Ember.Object.extend({
   }),
 
   calculateBackgroundColor(opacity) {
-    return $.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBackgroundColor'), opacity);
+    return Ember.$.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBackgroundColor'), opacity);
   },
 
   calculateBorderColor(opacity) {
-    return $.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBorderColor'), opacity);
+    return Ember.$.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBorderColor'), opacity);
   },
 
   animateStep(event, cover, offset) {
     var opacity = 1 - Math.sqrt(Math.abs(offset)),
         $imageWrapper = Ember.$(cover).find('.site-screenshot-image');
 
-    $(cover).find('img, figcaption').css({ opacity: opacity });
+    Ember.$(cover).find('img, figcaption').css({ opacity: opacity });
     $imageWrapper.css('border-color', this.calculateBorderColor(opacity));
 
     if ($imageWrapper.hasClass('site-screenshot-image-loading')) {
