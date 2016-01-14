@@ -22,6 +22,12 @@ export default Ember.Controller.extend({
     return this.get('coverflowAnimator.animateStep').bind(this.get('coverflowAnimator'));
   }),
 
+  updateCurrentIndex: Ember.computed(function() {
+    return (event, cover, index) => {
+      this.set('currentIndex', index);
+    };
+  }),
+
   snapshots: Ember.computed(function() {
     return this.store.findAll('snapshot');
   }),
@@ -32,9 +38,38 @@ export default Ember.Controller.extend({
     });
   }),
 
-  loadImages: Ember.observer('filteredSnapshots.[]', function() {
+  slicedSnapshotsInitialized: false,
+
+  slicedSnapshots: Ember.computed('filteredSnapshots.[]', 'currentIndex', function() {
+    if (!this.get('slicedSnapshotsInitialized')) {
+      this.set('slicedSnapshotsInitialized', true);
+    }
+
+    return this.get('filteredSnapshots').slice(0, this.get('currentIndex') + 10);
+  }),
+
+  observeForRefresh: Ember.computed('slicedSnapshotsInitialized', 'model.id', function() {
+    // Coverflow refresh must occur when the DOM is redrawn from scratch. This
+    // happens A) when the slicedSnapshots property is first initialized, and
+    // B) when the model ID changes.
+    //
+    // Note that we don't want to observe slicedSnapshots.[], because that
+    // would result in a refresh on every change of currentIndex, which would
+    // in turn cause visual glitches. It also isn't necessary to observe
+    // slicedSnapshots.[], since jQuery Coverflow picks up new .cover elements
+    // automatically with each call to animateStep() (as far as I can tell).
+    //
+    // Here, we'll return the current timestamp each time this property is
+    // accessed, to ensure that the coverflow component gets refreshed.
+    return Date.now();
+  }),
+
+  loadImages: Ember.observer('slicedSnapshots.[]', function() {
     Ember.run.next(() => {
       Ember.$('.site-screenshot-image img').each(function() {
+        var needsToLoad = Ember.$(this).parent('.site-screenshot-image').hasClass('site-screenshot-image-loading');
+        if (!needsToLoad) { return; }
+
         Ember.$(this)
           .load(onload)
           .attr('src', Ember.$(this).data('src'));

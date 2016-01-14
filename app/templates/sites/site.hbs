@@ -1,14 +1,15 @@
 <div class="site">
   {{#if filteredSnapshots}}
-    {{#jquery-coverflow classNames="site-coverflow"
-                        observeForRefresh=model.id
-                        animateStep=animateStep
+    {{#jquery-coverflow animateStep=animateStep
+                        classNames="site-coverflow"
+                        change=updateCurrentIndex
                         enableWheel=false
                         innerAngle=0
-                        outerAngle=0
                         innerScale=0.95
+                        observeForRefresh=observeForRefresh
+                        outerAngle=0
                         outerScale=0.1}}
-      {{#each filteredSnapshots as |snapshot|}}
+      {{#each slicedSnapshots as |snapshot|}}
         {{#jquery-coverflow-cover}}
           <figure class="site-screenshot">
             <div class="site-screenshot-image site-screenshot-image-loading">

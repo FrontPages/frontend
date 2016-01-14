@@ -8,7 +8,6 @@ export default Ember.Component.extend({
 
   _refresh: Ember.observer('observeForRefresh', function() {
     Ember.run.next(() => {
-      this.get('coverflow').coverflow('index', 0);
       this.get('coverflow').coverflow('refresh');
     });
   }),

@@ -7,10 +7,14 @@
   max-height: 100%
 
   .cover
+    display: none
     height: 100%
 
     &.current .site-screenshot-image
       @extend .mdl-shadow--8dp
+
+    &.site-screenshot-coverflow-initialized
+      display: initial
 
 .site-coverflow-cover-date
   text-transform: uppercase

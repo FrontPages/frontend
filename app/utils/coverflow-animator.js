@@ -29,9 +29,14 @@ export default Ember.Object.extend({
     if (!isVisible) { return; }
 
     var opacity = 1 - Math.sqrt(Math.abs(offset)),
+        $cover = Ember.$(cover),
         $imageWrapper = Ember.$(cover).find('.site-screenshot-image');
 
-    Ember.$(cover).find('img, figcaption').css({ opacity: opacity });
+    if (!$cover.hasClass('site-screenshot-coverflow-initialized')) {
+      $cover.addClass('site-screenshot-coverflow-initialized');
+    }
+
+    $cover.find('img, figcaption').css({ opacity: opacity });
     $imageWrapper.css('border-color', this.calculateBorderColor(opacity));
 
     if ($imageWrapper.hasClass('site-screenshot-image-loading')) {
