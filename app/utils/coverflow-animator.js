@@ -25,7 +25,9 @@ export default Ember.Object.extend({
     return Ember.$.xcolor.opacity(this.get('bodyBackgroundColor'), this.get('coverBorderColor'), opacity);
   },
 
-  animateStep(event, cover, offset) {
+  animateStep(event, cover, offset, isVisible) {
+    if (!isVisible) { return; }
+
     var opacity = 1 - Math.sqrt(Math.abs(offset)),
         $imageWrapper = Ember.$(cover).find('.site-screenshot-image');
 
