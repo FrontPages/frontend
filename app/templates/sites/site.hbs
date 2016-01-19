@@ -1,8 +1,10 @@
 <div class="site">
+  {{outlet}}
   {{#if filteredSnapshots}}
     {{#jquery-coverflow animateStep=animateStep
                         classNames="site-coverflow"
-                        change=updateCurrentIndex
+                        change=changeSnapshot
+                        confirm=selectSnapshot
                         enableWheel=false
                         innerAngle=0
                         innerScale=0.95
@@ -10,7 +12,7 @@
                         outerAngle=0
                         outerScale=0.1}}
       {{#each slicedSnapshots as |snapshot|}}
-        {{#jquery-coverflow-cover}}
+        {{#jquery-coverflow-cover class=(if (eq snapshot.id selectedSnapshot.id) "site-snapshot-selected")}}
           <figure class="site-screenshot">
             <div class="site-screenshot-image site-screenshot-image-loading">
               <img data-src="{{snapshot.file_path}}" src="{{emptyGIF}}" alt="Screenshot">

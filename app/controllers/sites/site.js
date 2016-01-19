@@ -13,6 +13,7 @@ var onload = function() {
 export default Ember.Controller.extend({
   // Empty GIF courtesy of http://stackoverflow.com/a/14115340/974981
   emptyGIF: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
+  selectedSnapshot: null,
 
   coverflowAnimator: Ember.computed(function() {
     return CoverflowAnimator.create();
@@ -22,7 +23,7 @@ export default Ember.Controller.extend({
     return this.get('coverflowAnimator.animateStep').bind(this.get('coverflowAnimator'));
   }),
 
-  updateCurrentIndex: Ember.computed(function() {
+  changeSnapshot: Ember.computed(function() {
     return (event, cover, index) => {
       this.set('currentIndex', index);
     };
@@ -46,6 +47,15 @@ export default Ember.Controller.extend({
     }
 
     return this.get('filteredSnapshots').slice(0, this.get('currentIndex') + 10);
+  }),
+
+  selectSnapshot: Ember.computed(function() {
+    return function(event, cover, index) {
+      var snapshot = this.get('slicedSnapshots')[index];
+      if (snapshot) {
+        this.transitionToRoute('sites.site.snapshot', snapshot.get('id'));
+      }
+    }.bind(this);
   }),
 
   observeForRefresh: Ember.computed('slicedSnapshotsInitialized', 'model.id', function() {

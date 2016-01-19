@@ -41,6 +41,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-moment": "4.2.1",
     "ember-resolver": "^2.0.3",
+    "ember-truth-helpers": "1.2.0",
     "express": "^4.13.3",
     "glob": "^4.5.3",
     "morgan": "^1.6.1"
