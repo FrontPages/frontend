@@ -58,10 +58,11 @@ export default Ember.Controller.extend({
     }.bind(this);
   }),
 
-  observeForRefresh: Ember.computed('slicedSnapshotsInitialized', 'model.id', function() {
+  observeForRefresh: Ember.computed('slicedSnapshotsInitialized', 'model.id', 'initialIndex', function() {
     // Coverflow refresh must occur when the DOM is redrawn from scratch. This
-    // happens A) when the slicedSnapshots property is first initialized, and
-    // B) when the model ID changes.
+    // happens A) when the slicedSnapshots property is first initialized, B)
+    // when the model ID changes, and C) when we're viewing a specific snapshot
+    // (indicated by initialIndex).
     //
     // Note that we don't want to observe slicedSnapshots.[], because that
     // would result in a refresh on every change of currentIndex, which would
@@ -86,4 +87,16 @@ export default Ember.Controller.extend({
       });
     });
   }),
+
+  actions: {
+    setCurrentSnapshot(snapshot) {
+      Ember.run.next(() => {
+        var index = this.get('filteredSnapshots').indexOf(snapshot);
+        this.set('initialIndex', index);
+        Ember.run.next(() => {
+          this.set('observeForRefresh', index);
+        });
+      });
+    }
+  }
 });

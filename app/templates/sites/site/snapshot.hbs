@@ -1,4 +1,7 @@
-<section class="snapshot-headlines">
+{{#link-to "sites.site"
+           model.site.dasherizedName
+           class="snapshot-headlines"
+           tagName="section"}}
   {{#link-to "sites.site" model.site.dasherizedName class="snapshot-back"}}
     <button class="mdl-button
                    mdl-js-button
@@ -14,4 +17,4 @@
       <li><a href="{{headline.url}}" target="_blank" class="snapshot-headline">{{headline.title}}</a></li>
     {{/each}}
   </ul>
-</section>
+{{/link-to}}

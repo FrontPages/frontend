@@ -5,5 +5,14 @@ export default Ember.Route.extend({
     return this.store.findAll('snapshot').then(function(snapshots) {
       return snapshots.findBy('id', params.snapshotId);
     });
+  },
+
+  afterModel(snapshot) {
+    this.controllerFor('sites.site').send('setCurrentSnapshot', snapshot);
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    controller.send('stopHeadlineClickPropagation');
   }
 });
