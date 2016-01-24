@@ -1,8 +1,7 @@
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('snapshot', 'Unit | Serializer | snapshot', {
-  // Specify the other units that are required for this test.
-  needs: ['serializer:snapshot']
+  needs: ['model:headline', 'model:site', 'serializer:snapshot']
 });
 
 // Replace this with your real tests.

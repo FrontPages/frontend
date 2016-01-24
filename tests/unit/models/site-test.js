@@ -1,8 +1,7 @@
 import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('site', 'Unit | Model | site', {
-  // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:snapshot']
 });
 
 test('it exists', function(assert) {
