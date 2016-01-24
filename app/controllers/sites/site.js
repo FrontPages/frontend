@@ -58,21 +58,28 @@ export default Ember.Controller.extend({
     }.bind(this);
   }),
 
-  observeForRefresh: Ember.computed('slicedSnapshotsInitialized', 'model.id', 'initialIndex', function() {
-    // Coverflow refresh must occur when the DOM is redrawn from scratch. This
-    // happens A) when the slicedSnapshots property is first initialized, B)
-    // when the model ID changes, and C) when we're viewing a specific snapshot
-    // (indicated by initialIndex).
-    //
-    // Note that we don't want to observe slicedSnapshots.[], because that
-    // would result in a refresh on every change of currentIndex, which would
-    // in turn cause visual glitches. It also isn't necessary to observe
-    // slicedSnapshots.[], since jQuery Coverflow picks up new .cover elements
-    // automatically with each call to animateStep() (as far as I can tell).
-    //
-    // Here, we'll return the current timestamp each time this property is
-    // accessed, to ensure that the coverflow component gets refreshed.
-    return Date.now();
+  observeForRefresh: Ember.computed('slicedSnapshotsInitialized',
+                                    'model.id',
+                                    'initialIndex', {
+    set(key, value) {
+      return value;
+    },
+    get() {
+      // Coverflow refresh must occur when the DOM is redrawn from scratch. This
+      // happens A) when the slicedSnapshots property is first initialized, B)
+      // when the model ID changes, and C) when we're viewing a specific snapshot
+      // (indicated by initialIndex).
+      //
+      // Note that we don't want to observe slicedSnapshots.[], because that
+      // would result in a refresh on every change of currentIndex, which would
+      // in turn cause visual glitches. It also isn't necessary to observe
+      // slicedSnapshots.[], since jQuery Coverflow picks up new .cover elements
+      // automatically with each call to animateStep() (as far as I can tell).
+      //
+      // Here, we'll return the current timestamp each time this property is
+      // accessed, to ensure that the coverflow component gets refreshed.
+      return Date.now();
+    }
   }),
 
   loadImages: Ember.observer('slicedSnapshots.[]', function() {
