@@ -1,5 +1,7 @@
 # frontpag.es
 
+[![Build Status](https://travis-ci.org/FrontPages/frontend.svg?branch=master)](https://travis-ci.org/FrontPages/frontend)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
