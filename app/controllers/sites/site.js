@@ -12,7 +12,7 @@ var onload = function() {
 
 export default Ember.Controller.extend({
   // Empty GIF courtesy of http://stackoverflow.com/a/14115340/974981
-  emptyGIF: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
+  emptyGIF: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
   selectedSnapshot: null,
 
   coverflowAnimator: Ember.computed(function() {
@@ -25,7 +25,12 @@ export default Ember.Controller.extend({
 
   changeSnapshot: Ember.computed(function() {
     return (event, cover, index) => {
-      this.set('currentIndex', index);
+      Ember.run(() => { this.set('currentIndex', index); });
+
+      var snapshot = this.get('slicedSnapshots')[index];
+      if (snapshot) {
+        this.transitionToRoute('sites.site.snapshot', snapshot.get('id'));
+      }
     };
   }),
 
