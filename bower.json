@@ -15,7 +15,8 @@
     "material-design-lite": "~1.0.6",
     "jquery-ui": "~1.11.4",
     "coverflow": "~1.2.0",
-    "xcolor": "~1.8.0"
+    "xcolor": "~1.8.0",
+    "pretender": "^0.10.0"
   },
   "resolutions": {
     "ember": "2.2.0"
