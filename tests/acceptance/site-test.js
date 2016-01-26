@@ -62,3 +62,17 @@ test('scrolling to a snapshot changes to that snapshot\'s route', function(asser
     }, 500);
   });
 });
+
+test('loading a given snapshot scrolls to that snapshot in coverflow', function(assert) {
+  var done = assert.async();
+
+  visit('/site/site-1/2');
+
+  andThen(function() {
+    console.log('assert');
+    Ember.run.later(this, function() {
+      assert.ok(find('.cover:eq(1)').hasClass('current'));
+      done();
+    }, 1000);
+  });
+});
