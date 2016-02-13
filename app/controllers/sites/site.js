@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
 
   changeSnapshot: Ember.computed(function() {
     return (event, cover, index) => {
-      console.log(`changeSnapshot to ${index}`);
+      console.log('changeSnapshot');
       Ember.run(() => { this.set('currentIndex', index); });
 
       var snapshot = this.get('slicedSnapshots')[index];
@@ -57,6 +57,7 @@ export default Ember.Controller.extend({
 
   selectSnapshot: Ember.computed(function() {
     return function(event, cover, index) {
+      console.log('selectSnapshot');
       var snapshot = this.get('slicedSnapshots')[index];
       if (snapshot) {
         this.transitionToRoute('sites.site.snapshot', snapshot.get('id'));
@@ -68,9 +69,11 @@ export default Ember.Controller.extend({
                                     'model.id',
                                     'initialIndex', {
     set(key, value) {
+      console.log('observeForRefresh set');
       return value;
     },
     get() {
+      console.log('observeForRefresh get');
       // Coverflow refresh must occur when the DOM is redrawn from scratch. This
       // happens A) when the slicedSnapshots property is first initialized, B)
       // when the model ID changes, and C) when we're viewing a specific snapshot
@@ -102,10 +105,9 @@ export default Ember.Controller.extend({
   }),
 
   _coverflowActionQueue: [],
-  _runCoverflowActionQueue: Ember.observer('coverflowInstance', '_coverflowActionQueue', function() {
-    console.log('coverflowInstance', this.get('coverflowInstance'));
+  _runCoverflowActionQueue: Ember.observer('coverflowInstance', '_coverflowActionQueue.[]', function() {
     if (this.get('coverflowInstance')) {
-      this.get('_coverflowActionQueue').forEach(function(action) {
+      this.get('_coverflowActionQueue').forEach((action) => {
         action();
         this.get('_coverflowActionQueue').removeObject(action);
       });
@@ -113,21 +115,22 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-    coverflowDidInit() {
-      console.log('initCoverflow');
+    coverflowDidInit(coverflowInstance) {
+      console.log('coverflowDidInit');
+      this.set('coverflowInstance', coverflowInstance);
     },
 
     setCurrentSnapshot(snapshot) {
+      console.log('setCurrentSnapshot');
       Ember.run.next(() => {
-        console.log(`filteredSnapshots.length: ${this.get('filteredSnapshots.length')}`);
         var index = this.get('filteredSnapshots').indexOf(snapshot);
-        console.log(`set index to ${index}`);
         this.get('_coverflowActionQueue').pushObject(() => {
-          this.get('coverflowInstance').send('call', 'index', index);
+          console.log('call index');
+          this.set('currentIndex', index);
+          console.log('end call index');
         });
         // this.set('initialIndex', index);
         // Ember.run.next(() => {
-        //   console.log('set observeForRefresh');
         //   this.set('observeForRefresh', index);
         // });
       });

@@ -8,7 +8,6 @@ export default Ember.Route.extend({
   },
 
   afterModel(snapshot) {
-    console.log('afterModel', snapshot.get('id'));
     this.controllerFor('sites.site').send('setCurrentSnapshot', snapshot);
   }
 });
