@@ -1,0 +1,17 @@
+<section class="headlines">
+  <figure class="headlines-screenshot">
+    <div class="headlines-screenshot-image">
+      <img src="{{snapshot.file_path}}" alt="Screenshot">
+    </div>
+    <figcaption>
+      <time class="headlines-screenshot-date">
+        {{moment-from-now snapshot.created_at}}
+      </time>
+    </figcaption>
+  </figure>
+  <ul class="headlines-list">
+    {{#each model as |headline|}}
+      <li><a href="{{headline.url}}" target="_blank" class="headlines-headline">{{headline.title}}</a></li>
+    {{/each}}
+  </ul>
+</section>

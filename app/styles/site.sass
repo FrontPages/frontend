@@ -1,23 +1,11 @@
 .site
+  display: flex
   height: 100%
+  overflow-x: auto
   position: absolute
   width: 100%
 
-.site-coverflow
-  max-height: 100%
-  transition: -webkit-filter .35s
-
-  .cover
-    display: none
-    height: 100%
-
-    &.current .site-screenshot-image
-      @extend .mdl-shadow--8dp
-
-    &.site-screenshot-coverflow-initialized
-      display: initial
-
-.site-coverflow-cover-date
+.site-snapshot-date
   text-transform: uppercase
 
 .site-list
@@ -30,13 +18,13 @@
     display: inline-block
     width: 200px
 
-.site-screenshot
+.site-snapshot
   box-sizing: border-box
   cursor: pointer
   display: flex
   flex-direction: column
   height: 100%
-  margin: 0
+  margin: 0 16px
   padding: 16px 0 // TODO: Use variable for gutter
 
   figcaption
@@ -49,17 +37,13 @@
     background: #fff
     width: 100%
 
-.site-screenshot-image
+.site-snapshot-image
+  @include screenshot
   background-color: unquote("rgba(#{$body-background-color}, 1)")
-  border:
-    color: unquote("rgb(#{$color-primary})")
-    style: solid
-    width: 1px
-  overflow: hidden
   transition: flex-grow .35s, background-color .35s, box-shadow .15s
   width: 300px
 
-  &.site-screenshot-image-loading
+  &.site-snapshot-image-loading
     background:
       color: unquote("rgb(#{$color-primary})")
       image: url(/assets/images/paper.svg)

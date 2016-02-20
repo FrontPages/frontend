@@ -7,9 +7,11 @@ $color-accent: $palette-orange-500
 
 $body-background-color: $palette-grey-200
 $serif-font-family: 'Vollkorn', serif
+@import 'mixins'
+
+@import 'headlines'
 @import 'sites'
 @import 'site'
-@import 'snapshot'
 
 body
   background: unquote("rgb(#{$body-background-color})")

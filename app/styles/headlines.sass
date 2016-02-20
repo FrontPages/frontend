@@ -1,0 +1,37 @@
+.headlines
+  box-sizing: border-box
+  display: flex
+  height: 100%
+  padding: $grid-phone-gutter
+  position: absolute
+  width: 100%
+
+.headlines-headline
+  color: inherit
+  font-size: 1.5em
+  line-height: 2em
+  text-decoration: none
+
+.headlines-list
+  flex-grow: 1
+  list-style-type: none
+  margin: 0
+  overflow-y: auto
+  padding: 0
+
+.headlines-screenshot
+  display: flex
+  flex-direction: column
+  margin: 0 $grid-phone-gutter 0 0
+
+  figcaption
+    @extend .mdl-card__supporting-text
+    padding:
+      left: 0
+      right: 0
+
+.headlines-screenshot-image
+  @include screenshot
+
+.headlines-screenshot-date
+  text-transform: uppercase
