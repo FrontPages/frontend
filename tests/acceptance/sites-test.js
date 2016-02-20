@@ -1,30 +1,14 @@
+import moduleForAcceptance from 'front-pages/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
 import { test } from 'qunit';
-import moduleForAcceptance from 'front-pages/tests/helpers/module-for-acceptance';
+import { sites, snapshots } from '../helpers/routes';
 
 moduleForAcceptance('Acceptance | sites', {
   beforeEach() {
     this.server = new Pretender(function() {
-      this.get('/sites', function() {
-        var mockJSON = {
-          sites: [
-            { id: 1, name: 'Site 1' },
-            { id: 2, name: 'Site 2' }
-          ]
-        };
-        return [200, {}, JSON.stringify(mockJSON)];
-      });
-
-      this.get('/snapshots', function() {
-        var mockJSON = { snapshots: [] };
-        return [200, {}, JSON.stringify(mockJSON)];
-      });
+      this.get(sites().url, sites().handler);
+      this.get(snapshots().url, snapshots().handler);
     });
-
-    this.server.prepareHeaders = function(headers) {
-      headers['Content-Type'] = 'application/json';
-      return headers;
-    };
   },
   afterEach() {
     this.server.shutdown();

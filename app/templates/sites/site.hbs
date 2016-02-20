@@ -1,31 +1,19 @@
 <div class="site">
-  {{outlet}}
   {{#if filteredSnapshots}}
-    {{#jquery-coverflow animateStep=animateStep
-                        classNames="site-coverflow"
-                        change=changeSnapshot
-                        confirm=selectSnapshot
-                        enableWheel=false
-                        index=initialIndex
-                        innerAngle=0
-                        innerScale=0.95
-                        observeForRefresh=observeForRefresh
-                        outerAngle=0
-                        outerScale=0.1}}
-      {{#each slicedSnapshots as |snapshot|}}
-        {{#jquery-coverflow-cover class=(if (eq snapshot.id selectedSnapshot.id) "site-snapshot-selected")}}
-          <figure class="site-screenshot">
-            <div class="site-screenshot-image site-screenshot-image-loading">
-              <img data-src="{{snapshot.file_path}}" src="{{emptyGIF}}" alt="Screenshot">
-            </div>
-            <figcaption>
-              <time class="site-coverflow-cover-date">
-                {{moment-from-now snapshot.created_at}}
-              </time>
-            </figcaption>
-          </figure>
-        {{/jquery-coverflow-cover}}
-      {{/each}}
-    {{/jquery-coverflow}}
+    {{#each filteredSnapshots as |snapshot|}}
+    {{#link-to "sites.site.snapshot.headlines"
+               snapshot.id
+               tagName="figure"
+               classNames="site-snapshot"}}
+        <div class="site-snapshot-image site-snapshot-image-loading">
+          <img data-src="{{snapshot.file_path}}" src="{{emptyGIF}}" alt="Screenshot">
+        </div>
+        <figcaption>
+          <time class="site-snapshot-date">
+            {{moment-from-now snapshot.created_at}}
+          </time>
+        </figcaption>
+      {{/link-to}}
+    {{/each}}
   {{/if}}
 </div>
