@@ -30,7 +30,11 @@ export default Ember.Controller.extend({
     });
   }),
 
-  loadImages: Ember.observer('filteredSnapshots.[]', function() {
+  loadImagesObserver: Ember.observer('filteredSnapshots.[]', function() {
+    this._loadImages();
+  }),
+
+  _loadImages() {
     Ember.run.next(() => {
       Ember.$('.site-snapshot-image img').each(function() {
         var needsToLoad = Ember.$(this).parent('.site-snapshot-image').hasClass('site-snapshot-image-loading');
@@ -41,5 +45,11 @@ export default Ember.Controller.extend({
           .attr('src', Ember.$(this).data('src'));
       });
     });
-  })
+  },
+
+  actions: {
+    loadImages() {
+      this._loadImages();
+    }
+  }
 });
