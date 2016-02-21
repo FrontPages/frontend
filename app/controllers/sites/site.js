@@ -27,7 +27,7 @@ export default Ember.Controller.extend({
   filteredSnapshots: Ember.computed('snapshots.[]', 'model', function() {
     return this.get('snapshots').filter((snapshot) => {
       return snapshot.get('site.id') === this.get('model.id');
-    });
+    }).slice(0, 50);
   }),
 
   loadImagesObserver: Ember.observer('filteredSnapshots.[]', function() {

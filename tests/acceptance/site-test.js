@@ -36,3 +36,21 @@ test('a snapshot links to that snapshot route', function(assert) {
     assert.equal(currentURL(), '/site/site-1/1/headlines');
   });
 });
+
+test('a maximum of 50 snapshots are shown', function(assert) {
+  var snapshotsHandler = snapshots(),
+      mockJSON = { snapshots: [] };
+
+  for (var id = 1; id <= 100; id++) {
+    mockJSON.snapshots.push({ id: id, site_id: 1, file_path: `${id}.jpg` });
+  }
+
+  snapshotsHandler.mockJSON = mockJSON;
+  this.server.get(snapshotsHandler.url, snapshotsHandler.handler);
+
+  visit('/site/site-1');
+
+  andThen(function() {
+    assert.equal(find('.site-snapshot').length, 50);
+  });
+});
