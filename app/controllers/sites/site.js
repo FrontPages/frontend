@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
   }),
 
   snapshots: Ember.computed(function() {
-    return this.store.findAll('snapshot');
+    return this.store.query('snapshot', { site_id: this.get('model.id') });
   }),
 
   filteredSnapshots: Ember.computed('snapshots.[]', 'model', function() {
