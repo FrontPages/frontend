@@ -1,6 +1,6 @@
 <div class="site">
-  {{#if filteredSnapshots}}
-    {{#each filteredSnapshots as |snapshot|}}
+  {{#if snapshots}}
+    {{#each snapshots as |snapshot|}}
     {{#link-to "sites.site.snapshot.headlines"
                snapshot.id
                tagName="figure"
