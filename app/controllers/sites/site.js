@@ -21,10 +21,16 @@ export default Ember.Controller.extend({
   }),
 
   snapshots: Ember.computed(function() {
-    return this.store.query('snapshot', { site_id: this.get('model.id') });
+    return this.store.findAll('snapshot');
   }),
 
-  loadImagesObserver: Ember.observer('snapshots.[]', function() {
+  filteredSnapshots: Ember.computed('snapshots.[]', 'model', function() {
+    return this.get('snapshots').filter((snapshot) => {
+      return snapshot.get('site.id') === this.get('model.id');
+    }).slice(0, 50);
+  }),
+
+  loadImagesObserver: Ember.observer('filteredSnapshots.[]', function() {
     this._loadImages();
   }),
 
