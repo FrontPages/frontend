@@ -7,7 +7,10 @@ module.exports = function(app) {
       title;
 
   router.get('/', function(req, res) {
-    res.send(snapshots);
+    var filteredSnapshots = snapshots.snapshots.filter(function(snapshot) {
+      return snapshot.site_id === parseInt(req.query.site_id, 10);
+    });
+    res.send({ snapshots: filteredSnapshots });
   });
 
   app.use('/snapshots', router);

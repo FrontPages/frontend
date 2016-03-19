@@ -54,3 +54,30 @@ test('a maximum of 50 snapshots are shown', function(assert) {
     assert.equal(find('.site-snapshot').length, 50);
   });
 });
+
+test('switching to a different site shows that site\'s snapshots', function(assert) {
+  this.server.get('/snapshots', function(request) {
+    if (request.queryParams.site_id === "1") {
+      return [200, { 'Content-type': 'application/json' }, JSON.stringify({
+        snapshots: [
+          { id: 1, site_id: 1, file_path: 'site1.jpg' },
+          { id: 2, site_id: 1, file_path: 'site1.jpg' }
+        ]
+      })];
+    } else if (request.queryParams.site_id === "2") {
+      return [200, { 'Content-type': 'application/json' }, JSON.stringify({
+        snapshots: [
+          { id: 3, site_id: 2, file_path: 'site2.jpg' },
+          { id: 4, site_id: 2, file_path: 'site2.jpg' }
+        ]
+      })];
+    }
+  });
+
+  visit('/site/site-1');
+  visit('/site/site-2');
+
+  andThen(function() {
+    assert.equal(find('.site-snapshot img:eq(0)').attr('src'), 'site2.jpg');
+  });
+});

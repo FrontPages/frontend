@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
     };
   }),
 
-  snapshots: Ember.computed(function() {
+  snapshots: Ember.computed('model.id', function() {
     return this.store.query('snapshot', { site_id: this.get('model.id') });
   }),
 
