@@ -9,6 +9,8 @@ var onload = function() {
       .fadeIn();
 };
 
+var SNAPSHOTS_PER_SITE = 50;
+
 export default Ember.Controller.extend({
   // Empty GIF courtesy of http://stackoverflow.com/a/14115340/974981
   emptyGIF: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=",
@@ -21,11 +23,11 @@ export default Ember.Controller.extend({
   }),
 
   snapshots: Ember.computed('model.id', function() {
-    return this.store.query('snapshot', { site_id: this.get('model.id') });
+    return this.store.query('snapshot', { site_id: this.get('model.id'), limit: SNAPSHOTS_PER_SITE });
   }),
 
   slicedSnapshots: Ember.computed('snapshots.[]', 'model', function() {
-    return this.get('snapshots').slice(0, 50);
+    return this.get('snapshots').slice(0, SNAPSHOTS_PER_SITE);
   }),
 
   loadImagesObserver: Ember.observer('slicedSnapshots.[]', function() {
