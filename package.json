@@ -10,7 +10,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy": "ember github-pages:commit && git push && git checkout -"
   },
   "repository": "",
   "engines": {
