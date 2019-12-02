@@ -6,7 +6,7 @@
                tagName="figure"
                classNames="site-snapshot"}}
         <div class="site-snapshot-image site-snapshot-image-loading">
-          <img data-src="{{snapshot.file_path}}" src="{{emptyGIF}}" alt="Screenshot">
+          <img data-src="https://frontpages.imgix.net/{{snapshot.filename_s3}}?w=300&h=600&fit=crop&crop=top,left" src="{{emptyGIF}}" alt="Screenshot">
         </div>
         <figcaption>
           <time class="site-snapshot-date">
